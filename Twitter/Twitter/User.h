@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+extern NSString * UserDidLoginNotification;
+extern NSString * UserDidLogoutNotification;
 
 @interface User : NSObject
 @property (nonatomic, strong) NSString *name;
@@ -16,4 +18,8 @@
 
 - (instancetype)initWithDictionary: (NSDictionary *)dictionary;
 
+
++ (User *)currentUser;
++ (void)setCurrentUser:(User *)currentUser;
++ (void)logout;
 @end

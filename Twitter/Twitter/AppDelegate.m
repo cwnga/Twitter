@@ -11,7 +11,7 @@
 #import "TwitterClient.h"
 #import "User.h"
 #import "Tweet.h"
-
+#import "TweetsViewController.h"
 
 @interface AppDelegate ()
 
@@ -24,7 +24,21 @@
     // Override point for customization after application launch.
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [[LoginViewController alloc] init];
+    
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(userDidLogout) name:UserDidLogoutNotification object:nil];
+    User *user = [User currentUser];
+   
+    if (user != nil) {
+        NSLog(@"welcome , %@", user.name);
+         self.window.rootViewController = [[TweetsViewController alloc] init];
+    } else {
+        
+        NSLog(@"NOT login");
+         self.window.rootViewController = [[LoginViewController alloc] init];
+        
+    }
+   
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -55,5 +69,11 @@
 {
     [[TwitterClient sharedInstance] openURL:url];
       return YES;
+}
+
+- (void)userDidLogout
+{
+     self.window.rootViewController = [[LoginViewController alloc] init];
+    
 }
 @end
