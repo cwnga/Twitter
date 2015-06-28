@@ -27,10 +27,12 @@ Time spent: `<Number of hours spent>`
 - [ ] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
 
 ### Walkthrough
-[(Twitter OAuth 1.0a Walkthrough)](https://vimeo.com/107373841)[swift](https://vimeo.com/107295686)This walkthrough takes you through the OAuth 1.0a authentication flow. At the end of this video, you'll be able to download tweets.
-[User Persistence and Session Events](https://vimeo.com/107378059)
+- [(Twitter OAuth 1.0a Walkthrough)](https://vimeo.com/107373841)[swift](https://vimeo.com/107295686)This walkthrough takes you through the OAuth 1.0a authentication flow. At the end of this video, you'll be able to download tweets.
+- [(User Persistence and Session Events)](https://vimeo.com/107378059) [(Swift)](https://vimeo.com/107319225). This walkthrough shows you a pattern for saving the current user as well as firing and handling session events like signing in and signing out.
 
-[(User Persistence and Session Events)](https://vimeo.com/107378059) [(Swift)](https://vimeo.com/107319225). This walkthrough shows you a pattern for saving the current user as well as firing and handling session events like signing in and signing out.
-
-
+### Guides and Reference
+- [Pull to refresh guide](https://guides.codepath.com/ios/Table-View-Guide#implementing-pull-to-refresh-with-uirefreshcontrol)
+- [Basic Network Programming Guide](https://guides.codepath.com/ios/Network-Programming)
+- Free iOS icons: http://www.glyphish.com/(http://www.glyphish.com/)
+- [Official Twitter icons](https://dev.twitter.com/overview/general/image-resources)
 
