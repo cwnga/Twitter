@@ -27,4 +27,4 @@ Time spent: `<Number of hours spent>`
 - [ ] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
 
 ### Walkthrough
-![(Twitter OAuth 1.0a Walkthrough)](https://vimeo.com/107373841)
+[(Twitter OAuth 1.0a Walkthrough)](https://vimeo.com/107373841)
