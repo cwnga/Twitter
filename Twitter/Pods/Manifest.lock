@@ -13,12 +13,15 @@ PODS:
   - BDBOAuth1Manager (1.5.0):
     - AFNetworking/NSURLConnection (~> 2.5.0)
     - AFNetworking/NSURLSession (~> 2.5.0)
+  - JSONModel (1.0.2)
 
 DEPENDENCIES:
   - BDBOAuth1Manager
+  - JSONModel (~> 1.0.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   BDBOAuth1Manager: 2e28773b58f880fb36b5cd3efcf0b1fefbc78a99
+  JSONModel: 6ffcb4ffa3659c9e9a2e5d45d6c7705bab187c03
 
 COCOAPODS: 0.36.4

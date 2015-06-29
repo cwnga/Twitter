@@ -1,37 +1,27 @@
 //
-//  TweetsViewController.m
+//  BaseListViewController.m
 //  Twitter
 //
 //  Created by Anson Ng on 6/28/15.
 //  Copyright (c) 2015 Anson Ng. All rights reserved.
 //
 
-#import "TweetsViewController.h"
-#import "User.h"
-#import "TwitterClient.h"
-#import "Tweet.h"
-@interface TweetsViewController ()
+#import "BaseListViewController.h"
+
+@interface BaseListViewController ()
 
 @end
 
-@implementation TweetsViewController
+@implementation BaseListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:^(NSArray *tweets, NSError *error) {
-        for (Tweet *tweet in tweets) {
-            NSLog(@"tweet::%@", tweet.text);
-        }
-    }];
-    // Do any additional setup after loading the view from its nib.
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-- (IBAction)onLogout:(id)sender {
-    [User logout];
 }
 
 /*

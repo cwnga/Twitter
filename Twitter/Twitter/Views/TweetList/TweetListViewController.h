@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseListViewController.h"
 
-@interface TweetsViewController : UIViewController
+@interface TweetListViewController : BaseListViewController
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
+
+
 
 @end

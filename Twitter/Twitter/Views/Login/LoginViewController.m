@@ -8,7 +8,7 @@
 
 #import "LoginViewController.h"
 #import "TwitterClient.h"
-#import "TweetsViewController.h"
+#import "TweetListViewController.h"
 
 
 @interface LoginViewController ()
@@ -28,7 +28,7 @@
         if (user != nil) {
             NSLog(@"welcome to %@", user.name);
             //[User currentUser];
-            [self presentViewController:[[TweetsViewController alloc]init]  animated:YES completion:nil];
+            [self presentViewController:[[TweetListViewController alloc]init]  animated:YES completion:nil];
         } else {
         
         }
