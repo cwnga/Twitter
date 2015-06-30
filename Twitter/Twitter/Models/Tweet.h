@@ -2,19 +2,20 @@
 //  Tweet.h
 //  Twitter
 //
-//  Created by Anson Ng on 6/28/15.
+//  Created by Anson Ng on 6/29/15.
 //  Copyright (c) 2015 Anson Ng. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "BaseJsonModel.h"
 #import "User.h"
 
-@interface Tweet : NSObject
-@property (nonatomic, strong) NSString *text;
-@property (nonatomic, strong) NSDate *createdAt;
+@protocol Tweet
+@end
 
-@property (nonatomic, strong) User *user;
+@interface Tweet : BaseJsonModel
 
-- (instancetype)initWithDictionary: (NSDictionary *)dictionary;
-+ (NSArray *) tweetsWithArray:(NSArray *)array;
+@property (strong, nonatomic) NSString *tweetId;
+@property (strong, nonatomic) NSString *text;
+@property (strong, nonatomic) User *user;
+
 @end

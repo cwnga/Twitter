@@ -2,24 +2,17 @@
 //  User.h
 //  Twitter
 //
-//  Created by Anson Ng on 6/28/15.
+//  Created by Anson Ng on 6/29/15.
 //  Copyright (c) 2015 Anson Ng. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-extern NSString * UserDidLoginNotification;
-extern NSString * UserDidLogoutNotification;
+#import "BaseJsonModel.h"
 
-@interface User : NSObject
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *screenname;
-@property (nonatomic, strong) NSString *profileImageUrl;
-@property (nonatomic, strong) NSString *tagline;
-
-- (instancetype)initWithDictionary: (NSDictionary *)dictionary;
-
-
-+ (User *)currentUser;
-+ (void)setCurrentUser:(User *)currentUser;
-+ (void)logout;
+@interface User : BaseJsonModel
+@property (strong, nonatomic) NSString* userId;
+@property (strong, nonatomic) NSString* name;
+@property (strong, nonatomic) NSString* descriptionString;
+@property (strong, nonatomic) NSString* location;
+@property (strong, nonatomic) NSString* profileImageUrl;
+@property (strong, nonatomic) NSString* screenName;
 @end

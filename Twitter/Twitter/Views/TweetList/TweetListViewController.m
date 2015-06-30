@@ -7,9 +7,9 @@
 //
 
 #import "TweetListViewController.h"
-#import "User.h"
+#import "User_NOUSE.h"
 #import "TwitterClient.h"
-#import "Tweet.h"
+#import "Tweet_NOUSE.h"
 #import "TweetListCollectionViewCell.h"
 @interface TweetListViewController ()
 
@@ -19,8 +19,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:^(NSArray *tweets, NSError *error) {
-        for (Tweet *tweet in tweets) {
+//    [[TwitterClient sharedInstance] getHomeTimelineWithParams:nil completionV1:^(NSArray *tweets, NSError *error) {
+//        for (Tweet_NOUSE *tweet in tweets) {
+//            NSLog(@"tweet::%@", tweet.text);
+//        }
+//    }];
+    [[TwitterClient sharedInstance] getHomeTimelineWithParams:nil completion:^(TweetList *tweetList, NSError *error) {
+        for (Tweet *tweet in tweetList.tweets) {
             NSLog(@"tweet::%@", tweet.text);
         }
     }];
@@ -32,7 +37,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)onLogout:(id)sender {
-    [User logout];
+    [User_NOUSE logout];
 }
 
 

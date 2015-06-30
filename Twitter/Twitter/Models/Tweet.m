@@ -1,35 +1,23 @@
-
 //
 //  Tweet.m
 //  Twitter
 //
-//  Created by Anson Ng on 6/28/15.
+//  Created by Anson Ng on 6/29/15.
 //  Copyright (c) 2015 Anson Ng. All rights reserved.
 //
 
 #import "Tweet.h"
 
 @implementation Tweet
-- (instancetype)initWithDictionary: (NSDictionary *)dictionary
+
++ (JSONKeyMapper*)keyMapper
 {
-    self = [super init];
-    if (self) {
-        NSString *createAtString = dictionary[@"created_at"];
-        self.user = [[User alloc]initWithDictionary:dictionary[@"user"]];
-        self.text = dictionary[@"text"];
-        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-        formatter.dateFormat = @"EEE MMM d HH:mm:ss Z y";
-        self.createdAt = [formatter dateFromString:createAtString];
-      //  self.createdAt = createAtString;
-     }
-    return self;
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"id": @"tweetId",
+                                                       @"description": @"descriptionString",
+                                                       @"profile_image_url": @"profileImageUrl",
+                                                       @"screen_name": @"screenName"
+                                                       }];
 }
-+ (NSArray *) tweetsWithArray:(NSArray *)array
-{
-    NSMutableArray *tweets = [NSMutableArray array];
-    for (NSDictionary *dictionary in array) {
-        [tweets addObject:[[Tweet alloc] initWithDictionary:dictionary]];
-    }
-         return tweets;
-}
+
 @end

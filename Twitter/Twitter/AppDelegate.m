@@ -9,9 +9,10 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "TwitterClient.h"
-#import "User.h"
-#import "Tweet.h"
+#import "User_NOUSE.h"
+#import "Tweet_NOUSE.h"
 #import "TweetListViewController.h"
+#import "AccountManager.h"
 
 @interface AppDelegate ()
 
@@ -19,7 +20,7 @@
 
 @implementation AppDelegate
 
-
+#pragma mark - customize
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
@@ -27,23 +28,26 @@
 
     UINavigationController *navigationController;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(userDidLogout) name:UserDidLogoutNotification object:nil];
-    User *user = [User currentUser];
-    
+    User *user = [AccountManager currentUser];
     if (user != nil) {
         NSLog(@"welcome , %@", user.name);
         navigationController = [[UINavigationController alloc] initWithRootViewController:[[TweetListViewController alloc] init]];
     } else {
-        
         NSLog(@"NOT login");
-        
         navigationController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
-        
     }
-     self.window.rootViewController = navigationController;
-   
+    self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
     return YES;
 }
+
+- (BOOL) application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    [[TwitterClient sharedInstance] openURL:url];
+    return YES;
+}
+
+#pragma mark - org
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -65,12 +69,6 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
-- (BOOL) application:(UIApplication *)application handleOpenURL:(NSURL *)url
-{
-    [[TwitterClient sharedInstance] openURL:url];
-      return YES;
 }
 
 - (void)userDidLogout

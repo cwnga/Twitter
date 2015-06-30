@@ -23,11 +23,9 @@
      Authorize URL	https://api.twitter.com/oauth/authorize
      Access token URL	https://api.twitter.com/oauth/access_token
      */
-    //[NSURL alloc] initWithString:<#(NSString *)#>
     [[TwitterClient sharedInstance] loginWithCompletion:^(User *user, NSError *error) {
         if (user != nil) {
             NSLog(@"welcome to %@", user.name);
-            //[User currentUser];
             [self presentViewController:[[TweetListViewController alloc]init]  animated:YES completion:nil];
         } else {
         
