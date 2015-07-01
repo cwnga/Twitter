@@ -14,6 +14,8 @@
 		F73C01A51B419E9900CDDC85 /* TweetList.m in Sources */ = {isa = PBXBuildFile; fileRef = F73C01A41B419E9900CDDC85 /* TweetList.m */; };
 		F73C01A71B41B5B500CDDC85 /* ModelList.h in Sources */ = {isa = PBXBuildFile; fileRef = F73C01A61B41B55200CDDC85 /* ModelList.h */; };
 		F73C01AA1B41BA2600CDDC85 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F73C01A91B41BA2600CDDC85 /* AccountManager.m */; };
+		F73C01B01B42271C00CDDC85 /* BaseDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = F73C01AF1B42271C00CDDC85 /* BaseDataStore.m */; };
+		F73C01B41B42FE5500CDDC85 /* TweetListDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = F73C01B31B42FE5500CDDC85 /* TweetListDataStore.m */; };
 		F7815B8C1B400206000B7AF1 /* TwitterClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F7815B7C1B400206000B7AF1 /* TwitterClient.m */; };
 		F7815B8D1B400206000B7AF1 /* Tweet_NOUSE.m in Sources */ = {isa = PBXBuildFile; fileRef = F7815B7F1B400206000B7AF1 /* Tweet_NOUSE.m */; };
 		F7815B8E1B400206000B7AF1 /* User_NOUSE.m in Sources */ = {isa = PBXBuildFile; fileRef = F7815B811B400206000B7AF1 /* User_NOUSE.m */; };
@@ -60,6 +62,11 @@
 		F73C01A61B41B55200CDDC85 /* ModelList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelList.h; sourceTree = "<group>"; };
 		F73C01A81B41BA2600CDDC85 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManager.h; sourceTree = "<group>"; };
 		F73C01A91B41BA2600CDDC85 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
+		F73C01AE1B42271C00CDDC85 /* BaseDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDataStore.h; sourceTree = "<group>"; };
+		F73C01AF1B42271C00CDDC85 /* BaseDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDataStore.m; sourceTree = "<group>"; };
+		F73C01B11B42D8E900CDDC85 /* Const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
+		F73C01B21B42FE5500CDDC85 /* TweetListDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetListDataStore.h; sourceTree = "<group>"; };
+		F73C01B31B42FE5500CDDC85 /* TweetListDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetListDataStore.m; sourceTree = "<group>"; };
 		F7815B7B1B400206000B7AF1 /* TwitterClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterClient.h; sourceTree = "<group>"; };
 		F7815B7C1B400206000B7AF1 /* TwitterClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterClient.m; sourceTree = "<group>"; };
 		F7815B7E1B400206000B7AF1 /* Tweet_NOUSE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet_NOUSE.h; sourceTree = "<group>"; };
@@ -144,6 +151,11 @@
 				F7815BB61B40084B000B7AF1 /* CalculatorHelper.m */,
 				F73C01A81B41BA2600CDDC85 /* AccountManager.h */,
 				F73C01A91B41BA2600CDDC85 /* AccountManager.m */,
+				F73C01AE1B42271C00CDDC85 /* BaseDataStore.h */,
+				F73C01AF1B42271C00CDDC85 /* BaseDataStore.m */,
+				F73C01B11B42D8E900CDDC85 /* Const.h */,
+				F73C01B21B42FE5500CDDC85 /* TweetListDataStore.h */,
+				F73C01B31B42FE5500CDDC85 /* TweetListDataStore.m */,
 			);
 			path = Libraries;
 			sourceTree = "<group>";
@@ -424,8 +436,10 @@
 				F7815B8C1B400206000B7AF1 /* TwitterClient.m in Sources */,
 				F7815B9F1B400252000B7AF1 /* TweetListViewController.m in Sources */,
 				F7815BB71B40084B000B7AF1 /* CalculatorHelper.m in Sources */,
+				F73C01B01B42271C00CDDC85 /* BaseDataStore.m in Sources */,
 				F73C019C1B41976600CDDC85 /* BaseJsonModel.m in Sources */,
 				F7815BA41B4002F9000B7AF1 /* TweetListCollectionViewCell.m in Sources */,
+				F73C01B41B42FE5500CDDC85 /* TweetListDataStore.m in Sources */,
 				F73C01A21B419C2100CDDC85 /* Tweet.m in Sources */,
 				F7815B9D1B400252000B7AF1 /* LoginViewController.m in Sources */,
 				F7815BB11B400656000B7AF1 /* BaseListViewController.m in Sources */,

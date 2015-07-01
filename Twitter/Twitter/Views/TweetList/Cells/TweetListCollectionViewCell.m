@@ -9,9 +9,7 @@
 #import "TweetListCollectionViewCell.h"
 @interface TweetListCollectionViewCell()
 
-@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *tweetLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *userProfileImageView;
+
 
 @end
 

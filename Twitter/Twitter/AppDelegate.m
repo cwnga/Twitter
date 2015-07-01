@@ -28,14 +28,17 @@
 
     UINavigationController *navigationController;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(userDidLogout) name:UserDidLogoutNotification object:nil];
-    User *user = [AccountManager currentUser];
-    if (user != nil) {
-        NSLog(@"welcome , %@", user.name);
-        navigationController = [[UINavigationController alloc] initWithRootViewController:[[TweetListViewController alloc] init]];
-    } else {
-        NSLog(@"NOT login");
-        navigationController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
-    }
+//    User *user = [AccountManager currentUser];
+//    if (user != nil) {
+//        NSLog(@"welcome , %@", user.name);
+//        navigationController = [[UINavigationController alloc] initWithRootViewController:[[TweetListViewController alloc] init]];
+//    } else {
+//        NSLog(@"NOT login");
+//        navigationController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
+//    }
+    NSLog(@"NOT login");
+    navigationController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
+
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
     return YES;

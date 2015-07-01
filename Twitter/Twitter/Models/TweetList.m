@@ -17,4 +17,16 @@
     return [[TweetList alloc]initWithDictionary:tweets error:error];
 }
 
+- (NSString *) getLastTweetId
+{
+    NSString *lastTweetId = nil;
+    lastTweetId = ((Tweet*)[self.tweets lastObject]).tweetId;
+    return lastTweetId;
+}
+- (NSString *) getFirstTweetId
+{
+    NSString *lastTweetId = nil;
+    lastTweetId = ((Tweet*)[self.tweets firstObject]).tweetId;
+    return lastTweetId;
+}
 @end

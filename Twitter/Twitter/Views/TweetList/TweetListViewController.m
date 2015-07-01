@@ -10,25 +10,49 @@
 #import "User_NOUSE.h"
 #import "TwitterClient.h"
 #import "Tweet_NOUSE.h"
+#import "TweetListDataStore.h"
 #import "TweetListCollectionViewCell.h"
+#import "AccountManager.h"
 @interface TweetListViewController ()
-
+@property (strong, nonatomic) TweetListDataStore *tweetListDataStore;
 @end
 
 @implementation TweetListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tweetListDataStore = [[TweetListDataStore alloc]init];
+    [self setupView];
+    [self.tweetListDataStore loadNextBunchWithSuccess:^(AFHTTPRequestOperation *operation, id response) {
+        [self.collectionView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
+        
+    }];
+    
 //    [[TwitterClient sharedInstance] getHomeTimelineWithParams:nil completionV1:^(NSArray *tweets, NSError *error) {
 //        for (Tweet_NOUSE *tweet in tweets) {
 //            NSLog(@"tweet::%@", tweet.text);
 //        }
 //    }];
-    [[TwitterClient sharedInstance] getHomeTimelineWithParams:nil completion:^(TweetList *tweetList, NSError *error) {
-        for (Tweet *tweet in tweetList.tweets) {
-            NSLog(@"tweet::%@", tweet.text);
-        }
-    }];
+//    [[TwitterClient sharedInstance] getHomeTimelineWithParams:nil completion:^(TweetList *tweetList, NSError *error) {
+//        for (Tweet *tweet in tweetList.tweets) {
+//            NSLog(@"tweet::%@", tweet.tweetId);
+//        }
+//    }];
+//    TweetListDataStore *tweetListDataStore = [[TweetListDataStore alloc]init];
+//    [tweetListDataStore loadNextBunchWithSuccess:^(AFHTTPRequestOperation *operation, id response) {
+//        NSLog(@"data::%@", tweetListDataStore.data);
+//        NSLog(@"count::%ld", (long)tweetListDataStore.totalCount);
+//        [tweetListDataStore loadNextBunchWithSuccess:^(AFHTTPRequestOperation *operation, id response) {
+//            NSLog(@"data::%@", tweetListDataStore.data);
+//            NSLog(@"count::%ld", (long)tweetListDataStore.totalCount);
+//            
+//        } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
+//            NSLog(@"erorr:::%@", err);
+//        }];
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
+//        NSLog(@"erorr:::%@", err);
+//    }];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -37,7 +61,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)onLogout:(id)sender {
-    [User_NOUSE logout];
+    [AccountManager logout];
 }
 
 
@@ -63,14 +87,18 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
-    //return [self.favoriteSellerDataStore.data count];
+    NSInteger count = self.tweetListDataStore.totalCount;
+    return count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
     TweetListCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TweetListCollectionViewCell" forIndexPath:indexPath];
+    Tweet *tweet = self.tweetListDataStore.data[indexPath.row];
+    cell.userNameLabel.text = tweet.user.name;
+    cell.tweetLabel.text = tweet.text;
+    
     //EASeller *seller = (EASeller *)[self.favoriteSellerDataStore.data objectAtIndex:indexPath.row];
     //cell.delegate = self;
     

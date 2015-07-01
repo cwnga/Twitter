@@ -9,8 +9,9 @@
 #import "BaseJsonModel.h"
 #import "Tweet.h"
 @interface TweetList : BaseJsonModel
-+ (instancetype) tweetsWithArray:(NSArray *)array error:(NSError *__autoreleasing *)error;
 
 @property (strong, nonatomic) NSArray<Tweet> *tweets;
-
++ (instancetype) tweetsWithArray:(NSArray *)array error:(NSError *__autoreleasing *)error;
+- (NSString *) getLastTweetId;
+- (NSString *) getFirstTweetId;
 @end

@@ -23,5 +23,8 @@
 @end
 @interface TweetListCollectionViewCell : BaseCollectionViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *tweetLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *userProfileImageView;
 @property (weak, nonatomic) id <TweetListCollectionViewCellDelegate> delegate;
 @end
