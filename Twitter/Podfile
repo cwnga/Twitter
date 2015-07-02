@@ -3,3 +3,5 @@ platform :ios, '8.0'
 pod 'SDWebImage', '~>3.7'
 pod 'JSONModel', '~> 1.0.0'
 pod 'BDBOAuth1Manager'
+pod 'UIScrollView-InfiniteScroll'
+

@@ -17,16 +17,19 @@ PODS:
   - SDWebImage (3.7.2):
     - SDWebImage/Core (= 3.7.2)
   - SDWebImage/Core (3.7.2)
+  - UIScrollView-InfiniteScroll (0.7.2)
 
 DEPENDENCIES:
   - BDBOAuth1Manager
   - JSONModel (~> 1.0.0)
   - SDWebImage (~> 3.7)
+  - UIScrollView-InfiniteScroll
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   BDBOAuth1Manager: 2e28773b58f880fb36b5cd3efcf0b1fefbc78a99
   JSONModel: 6ffcb4ffa3659c9e9a2e5d45d6c7705bab187c03
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
+  UIScrollView-InfiniteScroll: cfa860f96f5a2e3b4575d59fe6d08d337093ac2a
 
 COCOAPODS: 0.36.4

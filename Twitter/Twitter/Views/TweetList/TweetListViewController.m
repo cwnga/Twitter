@@ -17,6 +17,8 @@
 #import "TweetNewPostViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "OperationDelegate.h"
+#import <UIScrollView+InfiniteScroll.h>
+
 @interface TweetListViewController () <OperationDelegate>
 @property (strong, nonatomic) TweetListDataStore *tweetListDataStore;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -87,6 +89,24 @@
 //    refreshControl.addTarget(self, action: "fetchStories", forControlEvents: UIControlEvents.ValueChanged)
     [self.refreshControl addTarget:self action:@selector(refreshList) forControlEvents:UIControlEventValueChanged];
        [self.collectionView addSubview:self.refreshControl];
+    
+    //infinte scorlling
+    
+
+        
+        __weak typeof(self) weakSelf = self;
+        
+        [self.collectionView addInfiniteScrollWithHandler:^(UICollectionView* collectionView) {
+            
+            [self.tweetListDataStore loadNextBunchWithSuccess:^(AFHTTPRequestOperation *operation, id response) {
+                     [self.collectionView finishInfiniteScroll];
+                [self.collectionView reloadData];
+                //[self.collectionView finishInfiniteScroll];
+                
+            } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
+                
+            }];
+        }];
     
 }
 - (void)tapNewPostButton

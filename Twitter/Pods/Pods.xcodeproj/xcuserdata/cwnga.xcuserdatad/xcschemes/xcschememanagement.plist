@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-UIScrollView-InfiniteScroll.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,27 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0EFA23BCC8EE7D04231EE82E</key>
+		<key>0F7C4309BF44F142401B8D05</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>10609B8DB9C63CB4A2C41CAC</key>
+		<key>20EF5A59AB188CAA43BEDEC3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>39831008F3E4D9C31718ADAB</key>
+		<key>AA71CD2F18F94AF03451E894</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BB3F63A9A499DBFE2C4963AF</key>
+		<key>B5B75D034311577A12DE83EB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DEF0FF7F7F143C512F1C67E0</key>
+		<key>C5595D140E7BB273532D64D0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F5215FBFC69154F621DA6A7D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
