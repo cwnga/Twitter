@@ -39,27 +39,6 @@
     [[TwitterClient sharedInstance] getHomeTimelineWithParams:nil completion:^(TweetList *tweetList, NSError *error) {
         NSLog(@"fir:%@", tweetList);
     }];
-     
-     //    [[TwitterClient sharedInstance] getHomeTimelineWithParams:nil completion:^(TweetList *tweetList, NSError *error) {
-//        for (Tweet *tweet in tweetList.tweets) {
-//            NSLog(@"tweet::%@", tweet.tweetId);
-//        }
-//    }];
-//    TweetListDataStore *tweetListDataStore = [[TweetListDataStore alloc]init];
-//    [tweetListDataStore loadNextBunchWithSuccess:^(AFHTTPRequestOperation *operation, id response) {
-//        NSLog(@"data::%@", tweetListDataStore.data);
-//        NSLog(@"count::%ld", (long)tweetListDataStore.totalCount);
-//        [tweetListDataStore loadNextBunchWithSuccess:^(AFHTTPRequestOperation *operation, id response) {
-//            NSLog(@"data::%@", tweetListDataStore.data);
-//            NSLog(@"count::%ld", (long)tweetListDataStore.totalCount);
-//            
-//        } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
-//            NSLog(@"erorr:::%@", err);
-//        }];
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
-//        NSLog(@"erorr:::%@", err);
-//    }];
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -73,6 +52,8 @@
 
 - (void)setupView
 {
+    [super setupView];
+  
     //set collection view
     //self.favoriteSellerDataStore = [[FavoriteSellerDataStore alloc] init];
     UINib *tweetListCollectionViewCellNib = [UINib nibWithNibName:@"TweetListCollectionViewCell" bundle:nil];
@@ -86,14 +67,11 @@
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     
-//    refreshControl.addTarget(self, action: "fetchStories", forControlEvents: UIControlEvents.ValueChanged)
+    //    refreshControl.addTarget(self, action: "fetchStories", forControlEvents: UIControlEvents.ValueChanged)
     [self.refreshControl addTarget:self action:@selector(refreshList) forControlEvents:UIControlEventValueChanged];
        [self.collectionView addSubview:self.refreshControl];
     
-    //infinte scorlling
-    
-
-        
+       //infinte scorlling
         __weak typeof(self) weakSelf = self;
         
         [self.collectionView addInfiniteScrollWithHandler:^(UICollectionView* collectionView) {

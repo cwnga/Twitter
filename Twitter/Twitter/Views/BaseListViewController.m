@@ -25,6 +25,7 @@
 }
 - (void)setupView
 {
+        [super setupView];
 }
 
 /*

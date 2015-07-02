@@ -26,6 +26,7 @@
 }
 - (void)setupView
 {
+    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 /*

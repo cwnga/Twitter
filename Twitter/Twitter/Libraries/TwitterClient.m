@@ -11,6 +11,12 @@
 #import "AccountManager.h"
 NSString * const kTwitterCumsumerKey = @"yXEm8MC63kGlbq0OCtuxFvEIZ";
 NSString * const kTwitterConsumerSecret = @"oF1AlLdDW4a9zpvYOen4gARoLjfDRELq34hpPwsVP1wbPp5bka";
+//NSString * const kTwitterCumsumerKey = @"B6sA1AwNT52H5Lm6QqOaVw7b1";
+//NSString * const kTwitterConsumerSecret = @"ZiInXEV5tcoEISpdZYcBWQbKo38c0ir3t4kTt8gRqOJpGgBgRq";
+
+//Consumer Key (API Key)	B6sA1AwNT52H5Lm6QqOaVw7b1
+//Consumer Secret (API Secret)	ZiInXEV5tcoEISpdZYcBWQbKo38c0ir3t4kTt8gRqOJpGgBgRq
+
 NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
 @interface TwitterClient()
 
