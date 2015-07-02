@@ -16,8 +16,18 @@
                                                        @"id": @"tweetId",
                                                        @"description": @"descriptionString",
                                                        @"profile_image_url": @"profileImageUrl",
-                                                       @"screen_name": @"screenName"
+                                                       @"screen_name": @"screenName",
+                                                       @"retweeted_status": @"retweet",
+                                                       @"retweet_count": @"retweetCount",
+                                                       @"favorite_count": @"favoriteCount",
+                                                       @"favorited": @"isFavorited"
+                                                       
                                                        }];
+}
+
++(BOOL)propertyIsOptional:(NSString*)propertyName
+{
+    return YES;
 }
 
 @end

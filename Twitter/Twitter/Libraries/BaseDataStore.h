@@ -15,6 +15,7 @@
 @property (assign, nonatomic) NSInteger limit;
 @property (assign, nonatomic) NSInteger totalCount;
 
+- (void)reloadWithCleanUp:(ApiSuccessBlock)success failure:(ApiFailureBlock)failure;
 - (void)loadNextBunchWithSuccess:(ApiSuccessBlock)success failure:(ApiFailureBlock)failure;
 - (void)beginWithSuccess:(ApiSuccessBlock)success failure:(ApiFailureBlock)failure;
 - (void)fetchDataWithSuccess:(ApiSuccessBlock)success failure:(ApiFailureBlock)failure;

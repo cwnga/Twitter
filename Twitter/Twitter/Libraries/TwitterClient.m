@@ -14,7 +14,6 @@ NSString * const kTwitterConsumerSecret = @"oF1AlLdDW4a9zpvYOen4gARoLjfDRELq34hp
 NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
 @interface TwitterClient()
 
-@property (strong, nonatomic) void (^loginCompletionv1) (User_NOUSE *user, NSError *error);
 @property (strong, nonatomic) void (^loginCompletion) (User *user, NSError *error);
 @end
 @implementation TwitterClient
@@ -30,53 +29,7 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
         }
     });
     
-  
     return instance;
-}
-
-- (void) loginWithCompletionv1:(void (^)(User_NOUSE *user, NSError *error))completion
-{
-    self.loginCompletionv1 = completion;
-    
-    [self.requestSerializer removeAccessToken];
-    [self fetchRequestTokenWithPath:@"oauth/request_token" method:@"GET" callbackURL: [[NSURL alloc] initWithString:@"cptwitterdemo://oauth"] scope:nil success:^(BDBOAuth1Credential *requestToken) {
-        NSLog(@"got the request token!");
-        NSURL *authURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.twitter.com/oauth/authorize?oauth_token=%@", requestToken.token]];
-        
-        [[UIApplication sharedApplication] openURL:authURL];
-        
-        
-    } failure:^(NSError *error) {
-        NSLog(@"fail to got the request token!");
-        self.loginCompletion(nil, error);
-        
-    }];
-    
-    
-}
-
--(void) openURLv1:(NSURL *)url
-{
-    [self fetchAccessTokenWithPath:@"oauth/access_token" method:@"POST" requestToken:[BDBOAuth1Credential credentialWithQueryString:url.query] success:^(BDBOAuth1Credential *accessToken) {
-        NSLog(@"got the access token!");
-        
-        [self GET:@"1.1/account/verify_credentials.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            // NSLog(@"get current user, %@", responseObject);
-            NSLog(@"openUrl::%@", responseObject);
-            User_NOUSE *user =[[User_NOUSE alloc] initWithDictionary:responseObject];
-            [User_NOUSE setCurrentUser:user];
-            NSLog(@"openURL current user: %@", user.name);
-            self.loginCompletionv1(user, nil);
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"fail get current user, %@", error);
-            self.loginCompletion(nil, error);
-            
-        }];
-        
-    } failure:^(NSError *error) {
-        self.loginCompletion(nil, error);
-        
-    }];
 }
 
 #pragma mark - real
@@ -123,21 +76,6 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
 }
 
 
-
-- (void)getHomeTimelineWithParams:(NSDictionary *)params completionV1:(void (^)(NSArray *tweets, NSError *error))completion
-{
-    [self GET:@"1.1/statuses/home_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //<#code#>
-        NSArray *tweets = [Tweet_NOUSE tweetsWithArray:responseObject];
-        completion(tweets, nil);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        //<#code#>
-        completion(nil, error);
-    }
-     ];
-}
-
-
 - (void)getHomeTimelineWithParams:(NSDictionary *)params completion:(void (^)(TweetList *tweetList, NSError *error))completion
 {
     [self GET:@"1.1/statuses/home_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -150,6 +88,45 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
         completion(nil, error);
     }
      ];
+}
+
+
+
+- (void) insertNewPost:(NSString *)status completion:(ApiSuccessBlock)completion failure:(ApiFailureBlock)failure
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    parameters[@"status"] = status;
+    
+    [self POST:@"1.1/statuses/update.json" parameters:parameters success:completion failure:failure];
+}
+
+- (void) replyPost:(NSString *)status inReplyTweetId:(NSString *)tweetId completion:(ApiSuccessBlock)completion failure:(ApiFailureBlock)failure;
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    parameters[@"status"] = status;
+    parameters[@"in_reply_to_status_id"] = tweetId;
+    
+    [self POST:@"1.1/statuses/update.json" parameters:parameters success:completion failure:failure];
+}
+
+- (void) addFavourite:(NSString *)tweetId completion:(ApiSuccessBlock)completion failure:(ApiFailureBlock)failure
+{
+    
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+
+    parameters[@"id"] = tweetId;
+    
+    [self POST:@"1.1/favorites/create.json" parameters:parameters success:completion failure:failure];
+    
+}
+- (void) removeFavourite:(NSString *)tweetId completion:(ApiSuccessBlock)completion failure:(ApiFailureBlock)failure
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    parameters[@"id"] = tweetId;
+    
+    [self POST:@"1.1/favorites/create.json" parameters:parameters success:completion failure:failure];
+    
 }
 
 

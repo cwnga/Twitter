@@ -34,6 +34,21 @@
     }];
 }
 
+- (void)reloadWithCleanUp:(ApiSuccessBlock)success failure:(ApiFailureBlock)failure
+{
+    self.offset = 0;
+    self.data = [[NSMutableArray alloc] init];
+    self.totalCount =0;
+    
+    [self fetchDataWithSuccess:^(AFHTTPRequestOperation *operation, id response) {
+        [self populateDataWithResponse:response];
+        success(operation, response);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
+        failure(operation ,err);
+    }];
+
+    
+}
 - (void)fetchDataWithSuccess:(ApiSuccessBlock)success failure:(ApiFailureBlock)failure
 {
     

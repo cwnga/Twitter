@@ -17,5 +17,9 @@
 @property (strong, nonatomic) NSString *tweetId;
 @property (strong, nonatomic) NSString *text;
 @property (strong, nonatomic) User *user;
+@property (strong, nonatomic) Tweet <Optional> *retweet;
+@property (strong, nonatomic) NSString *retweetCount;
+@property (strong, nonatomic) NSString *favoriteCount;
+@property (assign, nonatomic) BOOL isFavorited;
 
 @end

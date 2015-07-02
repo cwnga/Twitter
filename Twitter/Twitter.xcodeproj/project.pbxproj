@@ -35,6 +35,13 @@
 		F78D23361B3FBB5F000BE235 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F78D23351B3FBB5F000BE235 /* Images.xcassets */; };
 		F78D23391B3FBB5F000BE235 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F78D23371B3FBB5F000BE235 /* LaunchScreen.xib */; };
 		F78D23451B3FBB5F000BE235 /* TwitterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F78D23441B3FBB5F000BE235 /* TwitterTests.m */; };
+		F798562C1B43EE6E00B6F9BD /* TweetDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F798562B1B43EE6E00B6F9BD /* TweetDetailViewController.m */; };
+		F798562E1B43EEC200B6F9BD /* TweetDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F798562D1B43EEC200B6F9BD /* TweetDetailViewController.xib */; };
+		F79856341B44129400B6F9BD /* TweetNewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79856321B44129400B6F9BD /* TweetNewPostViewController.m */; };
+		F79856351B44129400B6F9BD /* TweetNewPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79856331B44129400B6F9BD /* TweetNewPostViewController.xib */; };
+		F798563F1B4412DE00B6F9BD /* TweetReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F798563D1B4412DE00B6F9BD /* TweetReplyViewController.m */; };
+		F79856401B4412DE00B6F9BD /* TweetReplyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F798563E1B4412DE00B6F9BD /* TweetReplyViewController.xib */; };
+		F79856421B44200800B6F9BD /* OperationDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = F79856411B441F4D00B6F9BD /* OperationDelegate.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +109,16 @@
 		F78D233E1B3FBB5F000BE235 /* TwitterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwitterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F78D23431B3FBB5F000BE235 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F78D23441B3FBB5F000BE235 /* TwitterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwitterTests.m; sourceTree = "<group>"; };
+		F798562A1B43EE6E00B6F9BD /* TweetDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetDetailViewController.h; sourceTree = "<group>"; };
+		F798562B1B43EE6E00B6F9BD /* TweetDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetDetailViewController.m; sourceTree = "<group>"; };
+		F798562D1B43EEC200B6F9BD /* TweetDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetDetailViewController.xib; sourceTree = "<group>"; };
+		F79856311B44129400B6F9BD /* TweetNewPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetNewPostViewController.h; sourceTree = "<group>"; };
+		F79856321B44129400B6F9BD /* TweetNewPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetNewPostViewController.m; sourceTree = "<group>"; };
+		F79856331B44129400B6F9BD /* TweetNewPostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetNewPostViewController.xib; sourceTree = "<group>"; };
+		F798563C1B4412DE00B6F9BD /* TweetReplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetReplyViewController.h; sourceTree = "<group>"; };
+		F798563D1B4412DE00B6F9BD /* TweetReplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetReplyViewController.m; sourceTree = "<group>"; };
+		F798563E1B4412DE00B6F9BD /* TweetReplyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetReplyViewController.xib; sourceTree = "<group>"; };
+		F79856411B441F4D00B6F9BD /* OperationDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OperationDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +200,9 @@
 		F7815B931B400252000B7AF1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F798563B1B4412D400B6F9BD /* TweetReply */,
+				F798562F1B44126C00B6F9BD /* TweetNewPost */,
+				F79856291B43EE4D00B6F9BD /* TweetDetail */,
 				F7815B941B400252000B7AF1 /* Login */,
 				F7815B981B400252000B7AF1 /* TweetList */,
 				F7815BA61B40030C000B7AF1 /* BaseCollectionViewCell.h */,
@@ -191,6 +211,7 @@
 				F7815BAD1B400626000B7AF1 /* BaseViewController.m */,
 				F7815BAF1B400656000B7AF1 /* BaseListViewController.h */,
 				F7815BB01B400656000B7AF1 /* BaseListViewController.m */,
+				F79856411B441F4D00B6F9BD /* OperationDelegate.h */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -287,6 +308,36 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F79856291B43EE4D00B6F9BD /* TweetDetail */ = {
+			isa = PBXGroup;
+			children = (
+				F798562A1B43EE6E00B6F9BD /* TweetDetailViewController.h */,
+				F798562B1B43EE6E00B6F9BD /* TweetDetailViewController.m */,
+				F798562D1B43EEC200B6F9BD /* TweetDetailViewController.xib */,
+			);
+			path = TweetDetail;
+			sourceTree = "<group>";
+		};
+		F798562F1B44126C00B6F9BD /* TweetNewPost */ = {
+			isa = PBXGroup;
+			children = (
+				F79856311B44129400B6F9BD /* TweetNewPostViewController.h */,
+				F79856321B44129400B6F9BD /* TweetNewPostViewController.m */,
+				F79856331B44129400B6F9BD /* TweetNewPostViewController.xib */,
+			);
+			path = TweetNewPost;
+			sourceTree = "<group>";
+		};
+		F798563B1B4412D400B6F9BD /* TweetReply */ = {
+			isa = PBXGroup;
+			children = (
+				F798563C1B4412DE00B6F9BD /* TweetReplyViewController.h */,
+				F798563D1B4412DE00B6F9BD /* TweetReplyViewController.m */,
+				F798563E1B4412DE00B6F9BD /* TweetReplyViewController.xib */,
+			);
+			path = TweetReply;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -369,9 +420,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F798562E1B43EEC200B6F9BD /* TweetDetailViewController.xib in Resources */,
+				F79856401B4412DE00B6F9BD /* TweetReplyViewController.xib in Resources */,
 				F7815B9E1B400252000B7AF1 /* LoginViewController.xib in Resources */,
 				F7815BA01B400252000B7AF1 /* TweetListViewController.xib in Resources */,
 				F7815BA51B4002F9000B7AF1 /* TweetListCollectionViewCell.xib in Resources */,
+				F79856351B44129400B6F9BD /* TweetNewPostViewController.xib in Resources */,
 				F78D23391B3FBB5F000BE235 /* LaunchScreen.xib in Resources */,
 				F78D23361B3FBB5F000BE235 /* Images.xcassets in Resources */,
 			);
@@ -424,7 +478,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F79856421B44200800B6F9BD /* OperationDelegate.h in Sources */,
 				F73C01A71B41B5B500CDDC85 /* ModelList.h in Sources */,
+				F798563F1B4412DE00B6F9BD /* TweetReplyViewController.m in Sources */,
 				F7815B8E1B400206000B7AF1 /* User_NOUSE.m in Sources */,
 				F7815BAE1B400626000B7AF1 /* BaseViewController.m in Sources */,
 				F7815BA81B40030C000B7AF1 /* BaseCollectionViewCell.m in Sources */,
@@ -434,6 +490,7 @@
 				F7815BB41B400818000B7AF1 /* NibSizeCalculator.m in Sources */,
 				F73C019F1B419B1300CDDC85 /* User.m in Sources */,
 				F7815B8C1B400206000B7AF1 /* TwitterClient.m in Sources */,
+				F798562C1B43EE6E00B6F9BD /* TweetDetailViewController.m in Sources */,
 				F7815B9F1B400252000B7AF1 /* TweetListViewController.m in Sources */,
 				F7815BB71B40084B000B7AF1 /* CalculatorHelper.m in Sources */,
 				F73C01B01B42271C00CDDC85 /* BaseDataStore.m in Sources */,
@@ -443,6 +500,7 @@
 				F73C01A21B419C2100CDDC85 /* Tweet.m in Sources */,
 				F7815B9D1B400252000B7AF1 /* LoginViewController.m in Sources */,
 				F7815BB11B400656000B7AF1 /* BaseListViewController.m in Sources */,
+				F79856341B44129400B6F9BD /* TweetNewPostViewController.m in Sources */,
 				F78D232B1B3FBB5F000BE235 /* main.m in Sources */,
 				F7815B8D1B400206000B7AF1 /* Tweet_NOUSE.m in Sources */,
 			);

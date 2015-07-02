@@ -21,6 +21,13 @@
     return self;
 }
 
+- (void)reloadWithCleanUp:(ApiSuccessBlock)success failure:(ApiFailureBlock)failure
+{
+    self.params = [[NSMutableDictionary alloc] init];
+    [super reloadWithCleanUp:success failure:failure];
+
+}
+
 - (void)loadNextBunchWithSuccess:(ApiSuccessBlock)success failure:(ApiFailureBlock)failure
 {
     [self beginWithSuccess:success failure:failure];
@@ -31,8 +38,10 @@
     //params[@"since_id"] =
     //if (self.data
     NSLog(@"params::%@", self.params);
+    self.params[@"count"] = @(self.limit);
     [[TwitterClient sharedInstance] getHomeTimelineWithParams:self.params completion:^(TweetList *tweetList, NSError *error) {
         success(nil, tweetList);
+        NSLog(@"error::%@", error);
     }];
   //  [[self service] getMessageBoardListWithCriteria:[self criteria] range:[self range] success:success failure:failure];
 }

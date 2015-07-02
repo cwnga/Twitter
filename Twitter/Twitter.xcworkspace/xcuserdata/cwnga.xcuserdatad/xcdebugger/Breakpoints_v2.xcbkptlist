@@ -22,16 +22,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twitter/Views/TweetNewPost/TweetNewPostViewController.m"
+            timestampString = "457454819.103089"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "-tapSendButton:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[TweetNewPostViewController tapSendButton:]"
+                  moduleName = "Twitter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cwnga/Desktop/git/iphone/Twitter/Twitter/Twitter/Views/TweetNewPost/TweetNewPostViewController.m"
+                  timestampString = "457454819.124953"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "112">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__44-[TweetNewPostViewController tapSendButton:]_block_invoke"
+                  moduleName = "Twitter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cwnga/Desktop/git/iphone/Twitter/Twitter/Twitter/Views/TweetNewPost/TweetNewPostViewController.m"
+                  timestampString = "457454819.125239"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "68">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Twitter/Libraries/TweetListDataStore.m"
-            timestampString = "457435525.251062"
+            filePath = "Twitter/Views/TweetList/TweetListViewController.m"
+            timestampString = "457467360.132796"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "-populateDataWithResponse:"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "-tapFavoriteDelegate:tweet:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,45 +89,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Twitter/Libraries/TweetListDataStore.m"
-            timestampString = "457435526.179526"
+            filePath = "Twitter/Views/TweetList/TweetListViewController.m"
+            timestampString = "457467360.132796"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "-populateDataWithResponse:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Twitter/Libraries/TweetListDataStore.m"
-            timestampString = "457435549.161867"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "-populateDataWithResponse:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Twitter/Libraries/TweetListDataStore.m"
-            timestampString = "457435562.148515"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "-populateDataWithResponse:"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "-tapFavoriteDelegate:tweet:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

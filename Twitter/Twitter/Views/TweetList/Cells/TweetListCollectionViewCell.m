@@ -47,9 +47,9 @@
 
 - (IBAction)tapReplayButton:(id)sender
 {
- 
+    
     if (self.delegate) {
-        [self.delegate tapReplyButtonEvent:self];
+        [self.delegate tapReplyDelegate:self tweet:self.tweet];
     }
 }
 
@@ -57,13 +57,13 @@
 {
     
     if (self.delegate) {
-        [self.delegate tapRemoveFavoriteButtonEvent:self];
+        [self.delegate tapRetweetDelegate:self tweet:self.tweet];
     }
 }
 - (IBAction)tapFavoriteButton:(id)sender
 {
     if (self.delegate) {
-        [self.delegate tapAddFavoriteButtonEvent:self];
+        [self.delegate tapFavoriteDelegate:self tweet:self.tweet];
     }
 }
 

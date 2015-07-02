@@ -8,23 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseCollectionViewCell.h"
+#import "OperationDelegate.h"
 @class TweetListCollectionViewCell;
-@protocol TweetListCollectionViewCellDelegate <NSObject>
-
-- (void) tapReplyButtonEvent:(TweetListCollectionViewCell *)tweetListCollectionViewCell;
-
-- (void) tapRetweetButtonEvent:(TweetListCollectionViewCell *)tweetListCollectionViewCell;
-
-- (void) tapAddFavoriteButtonEvent:(TweetListCollectionViewCell *)tweetListCollectionViewCell;
-
-- (void) tapRemoveFavoriteButtonEvent:(TweetListCollectionViewCell *)tweetListCollectionViewCell;
-
-
-@end
 @interface TweetListCollectionViewCell : BaseCollectionViewCell
 
+@property (strong, nonatomic) Tweet* tweet;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tweetLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *userProfileImageView;
-@property (weak, nonatomic) id <TweetListCollectionViewCellDelegate> delegate;
+@property (weak, nonatomic) id <OperationDelegate> delegate;
 @end

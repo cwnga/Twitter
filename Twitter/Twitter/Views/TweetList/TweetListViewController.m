@@ -13,8 +13,13 @@
 #import "TweetListDataStore.h"
 #import "TweetListCollectionViewCell.h"
 #import "AccountManager.h"
-@interface TweetListViewController ()
+#import "TweetDetailViewController.h"
+#import "TweetNewPostViewController.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "OperationDelegate.h"
+@interface TweetListViewController () <OperationDelegate>
 @property (strong, nonatomic) TweetListDataStore *tweetListDataStore;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 
 @implementation TweetListViewController
@@ -29,12 +34,11 @@
         
     }];
     
-//    [[TwitterClient sharedInstance] getHomeTimelineWithParams:nil completionV1:^(NSArray *tweets, NSError *error) {
-//        for (Tweet_NOUSE *tweet in tweets) {
-//            NSLog(@"tweet::%@", tweet.text);
-//        }
-//    }];
-//    [[TwitterClient sharedInstance] getHomeTimelineWithParams:nil completion:^(TweetList *tweetList, NSError *error) {
+    [[TwitterClient sharedInstance] getHomeTimelineWithParams:nil completion:^(TweetList *tweetList, NSError *error) {
+        NSLog(@"fir:%@", tweetList);
+    }];
+     
+     //    [[TwitterClient sharedInstance] getHomeTimelineWithParams:nil completion:^(TweetList *tweetList, NSError *error) {
 //        for (Tweet *tweet in tweetList.tweets) {
 //            NSLog(@"tweet::%@", tweet.tweetId);
 //        }
@@ -74,8 +78,34 @@
     self.collectionView.backgroundColor = [UIColor clearColor];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
+    
+    //set up tap bar item
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStylePlain target:self action:@selector(tapNewPostButton)];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    
+//    refreshControl.addTarget(self, action: "fetchStories", forControlEvents: UIControlEvents.ValueChanged)
+    [self.refreshControl addTarget:self action:@selector(refreshList) forControlEvents:UIControlEventValueChanged];
+       [self.collectionView addSubview:self.refreshControl];
+    
+}
+- (void)tapNewPostButton
+{
+    TweetNewPostViewController *tweetNewPostViewController = [[TweetNewPostViewController alloc] init];
+    //tweetDetailViewController.tweet = tweet;
+    [self.navigationController pushViewController:tweetNewPostViewController animated:YES];
+    
 }
 
+#pragma mark pull to refresh
+-(void) refreshList {
+    [self.tweetListDataStore reloadWithCleanUp:^ (AFHTTPRequestOperation *operation, id response) {
+        [self.collectionView reloadData];
+        [self.refreshControl endRefreshing];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
+        
+    }];
+}
 
 
 #pragma mark - UICollectionViewDelegate Method
@@ -98,27 +128,14 @@
     Tweet *tweet = self.tweetListDataStore.data[indexPath.row];
     cell.userNameLabel.text = tweet.user.name;
     cell.tweetLabel.text = tweet.text;
-    
-    //EASeller *seller = (EASeller *)[self.favoriteSellerDataStore.data objectAtIndex:indexPath.row];
-    //cell.delegate = self;
-    
-//    cell.sellerStoreNameLabel.text = seller.storeName;
-//    cell.ratingLabel.text =  seller.ratingInfo.total;
-//    cell.sellerStoreNameLabel.text = seller.storeName;
-//    cell.ratingLabel.text = [NSString stringWithFormat:@"評價 %@", seller.rating]; //TRANSLATE
-//    
-//    cell.inFavoriteSellerButton.selected = [self.removedFavoriteSellerEcids containsObject:seller.ecid];//not in
-//    cell.sellerAvatarView.contentMode = UIViewContentModeCenter;
-//    
-//    [cell.sellerAvatarView setAvatarImageWithURL:[NSURL URLWithString:seller.logoUrl]
-//                                placeholderImage:[UIImage imageNamed:@"Img-DefaultAvatar"]
-//                                       completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//                                           if (!error) {
-//                                               cell.sellerAvatarView.image = image;
-//                                               cell.sellerAvatarView.contentMode = UIViewContentModeScaleAspectFill;
-//                                           }
-//                                       }
-//     ];
+    cell.tweet = tweet;
+    cell.delegate = self;
+    NSURL *imageURL = [[NSURL alloc] initWithString:tweet.user.profileImageUrl];
+    [cell.userProfileImageView sd_setImageWithURL:imageURL placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (!error) {
+            cell.userProfileImageView.image = image;
+        }
+    }];
     return cell;
 }
 
@@ -137,9 +154,36 @@
     return [[NibSizeCalculator sharedInstance] sizeForNibNamed:@"TweetListCollectionViewCell" withstyle:NibFixedHeightScaling];
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    Tweet *tweet = (Tweet *)self.tweetListDataStore.data[indexPath.row];
+    TweetDetailViewController *tweetDetailViewController = [[TweetDetailViewController alloc] init];
+    tweetDetailViewController.tweet = tweet;
+    [self.navigationController pushViewController:tweetDetailViewController animated:YES];
+}
 
-
-
+#pragma mark - OperateionDelegate
+- (void)tapReplyDelegate:(id)sender tweet:(Tweet *)tweet
+{
+    NSLog(@"tapReplyDelegate");
+}
+- (void)tapRetweetDelegate:(id)sender tweet:(Tweet *)tweet
+{
+    
+    NSLog(@"tapRetweetDelegate");
+    
+}
+- (void)tapFavoriteDelegate:(id)sender tweet:(Tweet *)tweet
+{
+    NSLog(@"tweet::%@", tweet);
+    NSLog(@"tapFavoriteDelegate");
+    [[TwitterClient sharedInstance] addFavourite:tweet.tweetId completion:^(AFHTTPRequestOperation *operation, id response) {
+        NSLog(@"succss add");
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
+        NSLog(@"fail add:%@", err);
+    }];
+}
 /*
 #pragma mark - Navigation
 
