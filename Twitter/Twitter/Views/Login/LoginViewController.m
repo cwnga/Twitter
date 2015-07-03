@@ -26,6 +26,8 @@
     [[TwitterClient sharedInstance] loginWithCompletion:^(User *user, NSError *error) {
         if (user != nil) {
             NSLog(@"welcome to %@", user.name);
+            //self.navigationController = [[UINavigationController alloc] init];
+             [self.navigationController setNavigationBarHidden:NO animated:YES];
             [self.navigationController pushViewController:[[TweetListViewController alloc]init]  animated:YES ];
             //[self presentViewController:[[TweetListViewController alloc]init]  animated:YES completion:nil];
             
@@ -38,6 +40,7 @@
 }
 
 - (void)viewDidLoad {
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }

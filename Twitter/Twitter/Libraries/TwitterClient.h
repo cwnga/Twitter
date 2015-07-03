@@ -7,7 +7,7 @@
 //
 
 #import "BDBOAuth1RequestOperationManager.h"
-#import "User_NOUSE.h"
+
 #import "ModelList.h"
 #import "Const.h"
 @interface TwitterClient : BDBOAuth1RequestOperationManager

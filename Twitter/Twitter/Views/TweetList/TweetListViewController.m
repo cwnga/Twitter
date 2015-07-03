@@ -7,9 +7,7 @@
 //
 
 #import "TweetListViewController.h"
-#import "User_NOUSE.h"
 #import "TwitterClient.h"
-#import "Tweet_NOUSE.h"
 #import "TweetListDataStore.h"
 #import "TweetListCollectionViewCell.h"
 #import "AccountManager.h"
@@ -30,7 +28,6 @@
     [super viewDidLoad];
     [self.navigationItem setHidesBackButton:YES animated:YES];
     self.tweetListDataStore = [[TweetListDataStore alloc]init];
-    [self setupView];
     [self.tweetListDataStore loadNextBunchWithSuccess:^(AFHTTPRequestOperation *operation, id response) {
         [self.collectionView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
@@ -54,6 +51,8 @@
 - (void)setupView
 {
     [super setupView];
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
+    
   
     //set collection view
     //self.favoriteSellerDataStore = [[FavoriteSellerDataStore alloc] init];
@@ -65,27 +64,29 @@
     
     //set up tap bar item
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStylePlain target:self action:@selector(tapNewPostButton)];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(tapLogoutButton)];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     
     //    refreshControl.addTarget(self, action: "fetchStories", forControlEvents: UIControlEvents.ValueChanged)
     [self.refreshControl addTarget:self action:@selector(refreshList) forControlEvents:UIControlEventValueChanged];
-       [self.collectionView addSubview:self.refreshControl];
+    [self.collectionView addSubview:self.refreshControl];
     
-       //infinte scorlling
-        __weak typeof(self) weakSelf = self;
+    //infinte scorlling
+    __weak typeof(self) weakSelf = self;
+    
+    [self.collectionView addInfiniteScrollWithHandler:^(UICollectionView* collectionView) {
         
-        [self.collectionView addInfiniteScrollWithHandler:^(UICollectionView* collectionView) {
+        [self.tweetListDataStore loadNextBunchWithSuccess:^(AFHTTPRequestOperation *operation, id response) {
+            [self.collectionView finishInfiniteScroll];
+            [self.collectionView reloadData];
+         //   [self.refreshControl endRefreshing];
+            //            [self.collectionView finishInfiniteScroll];
             
-            [self.tweetListDataStore loadNextBunchWithSuccess:^(AFHTTPRequestOperation *operation, id response) {
-                     [self.collectionView finishInfiniteScroll];
-                [self.collectionView reloadData];
-                //[self.collectionView finishInfiniteScroll];
-                
-            } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
-                
-            }];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
+            
         }];
+    }];
     
 }
 - (void)tapNewPostButton
@@ -96,12 +97,19 @@
     
 }
 
+- (void)tapLogoutButton
+{
+    [AccountManager logout];
+}
+
 #pragma mark pull to refresh
 -(void) refreshList {
     [self.tweetListDataStore reloadWithCleanUp:^ (AFHTTPRequestOperation *operation, id response) {
         [self.collectionView reloadData];
         [self.refreshControl endRefreshing];
+        [self.refreshControl endRefreshing];
     } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
+         [self.refreshControl endRefreshing];
         
     }];
 }
@@ -126,6 +134,7 @@
     TweetListCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TweetListCollectionViewCell" forIndexPath:indexPath];
     Tweet *tweet = self.tweetListDataStore.data[indexPath.row];
     cell.userNameLabel.text = tweet.user.name;
+    cell.userScreenName.text = [NSString stringWithFormat:@"@%@" ,tweet.user.screenName];
     cell.tweetLabel.text = tweet.text;
     cell.tweet = tweet;
     cell.delegate = self;
@@ -135,6 +144,9 @@
             cell.userProfileImageView.image = image;
         }
     }];
+    [cell.favoriteButton setSelected:tweet.isFavorited];
+    [cell.retweetButton setSelected:tweet.retweeted];
+    
     return cell;
 }
 
@@ -164,24 +176,104 @@
 #pragma mark - OperateionDelegate
 - (void)tapReplyDelegate:(id)sender tweet:(Tweet *)tweet
 {
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:(UICollectionViewCell *)sender];
+    
     NSLog(@"tapReplyDelegate");
 }
 - (void)tapRetweetDelegate:(id)sender tweet:(Tweet *)tweet
-{
+{   NSIndexPath *indexPath = [self.collectionView indexPathForCell:(UICollectionViewCell *)sender];
+    
     
     NSLog(@"tapRetweetDelegate");
+    
+// Tweet *tweet = (Tweet *)self.tweetListDataStore.data[indexPath.row];
+    
+    self.tweetListDataStore.data[indexPath.row] = tweet;
+    
+    [[TwitterClient sharedInstance] retweetsWithTweetId:tweet.tweetId completion:^(AFHTTPRequestOperation *operation, id response) {
+        
+        TweetListCollectionViewCell *cell = (TweetListCollectionViewCell *) sender;
+        [cell.retweetButton setSelected:YES];
+        tweet.retweeted = YES;
+        
+        [self.view makeToast:@"Succeess"
+                    duration:3.0
+                    position:CSToastPositionTop
+                       title:@""];
+        [self.collectionView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
+        tweet.retweeted = NO;
+        
+        TweetListCollectionViewCell *cell = (TweetListCollectionViewCell *) sender;
+        [cell.retweetButton setSelected:NO];
+        
+        [self.view makeToast:@"Fail"
+                    duration:3.0
+                    position:CSToastPositionTop
+                       title:@""];
+        
+        [self.collectionView reloadData];
+    }];
+
+    
     
 }
 - (void)tapFavoriteDelegate:(id)sender tweet:(Tweet *)tweet
 {
-    NSLog(@"tweet::%@", tweet);
-    NSLog(@"tapFavoriteDelegate");
-    [[TwitterClient sharedInstance] addFavourite:tweet.tweetId completion:^(AFHTTPRequestOperation *operation, id response) {
-        NSLog(@"succss add");
+    NSIndexPath *indexPath = [self.collectionView indexPathForCell:(UICollectionViewCell *)sender];
+    self.tweetListDataStore.data[indexPath.row] = tweet;
+     
+   TweetListCollectionViewCell *cell = (TweetListCollectionViewCell *)sender;
+    
+    if (cell.favoriteButton.isSelected != YES) {
+        //add
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
-        NSLog(@"fail add:%@", err);
-    }];
+        [[TwitterClient sharedInstance] addFavourite:tweet.tweetId completion:^(AFHTTPRequestOperation *operation, id response) {
+            
+            //[cell.favoriteButton setSelected:YES];
+            tweet.isFavorited = YES;
+            
+            
+            [self.view makeToast:@"Succeess"
+                        duration:3.0
+                        position:CSToastPositionTop
+                           title:@""];
+            [self.collectionView reloadData];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
+            tweet.isFavorited = NO;
+            
+            //[cell.favoriteButton setSelected:NO];
+            
+            [self.view makeToast:@"Fail"
+                        duration:3.0
+                        position:CSToastPositionTop
+                           title:@""];
+            
+            [self.collectionView reloadData];
+        }];
+    } else {
+        //remove
+        [[TwitterClient sharedInstance] removeFavourite:tweet.tweetId completion:^(AFHTTPRequestOperation *operation, id response) {
+            
+               tweet.isFavorited = NO;
+            
+            [self.view makeToast:@"Succeess"
+                        duration:3.0
+                        position:CSToastPositionTop
+                           title:@""];
+                    [self.collectionView reloadData];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
+            [cell.favoriteButton setSelected:YES];
+            
+            tweet.isFavorited = YES;
+            [self.view makeToast:@"Fail"
+                        duration:3.0
+                        position:CSToastPositionTop
+                           title:@""];
+                    [self.collectionView reloadData];
+        }];
+        
+    }
 }
 /*
 #pragma mark - Navigation

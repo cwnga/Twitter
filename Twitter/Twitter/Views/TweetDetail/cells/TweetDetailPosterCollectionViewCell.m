@@ -31,4 +31,15 @@
     }
 }
 
+
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    self.userImageView.image = [UIImage imageNamed:@"default_profile"];
+    [self.replyButton setSelected:NO];
+    [self.retweetButton setSelected:NO];
+    [self.favoriteButton setSelected:NO];
+}
+
+
 @end

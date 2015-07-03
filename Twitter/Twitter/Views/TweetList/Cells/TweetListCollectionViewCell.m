@@ -38,11 +38,17 @@
     self.borderHeight = 1.0f;
     self.borderColor = [UIColor grayColor];
     [self setBackgroundColor: [UIColor whiteColor]];
+  
 }
 
 - (void)prepareForReuse
 {
     [super prepareForReuse];
+    self.userProfileImageView.image = [UIImage imageNamed:@"default_profile"];
+    [self.replyButton setSelected:NO];
+    [self.retweetButton setSelected:NO];
+    [self.favoriteButton setSelected:NO];
+    self.userScreenName.text = @"";
 }
 
 - (IBAction)tapReplayButton:(id)sender

@@ -21,5 +21,5 @@
 @property (strong, nonatomic) NSString *retweetCount;
 @property (strong, nonatomic) NSString *favoriteCount;
 @property (assign, nonatomic) BOOL isFavorited;
-
+@property (assign, nonatomic) BOOL retweeted;
 @end

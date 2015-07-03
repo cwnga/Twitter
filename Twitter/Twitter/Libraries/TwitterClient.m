@@ -7,7 +7,6 @@
 //
 
 #import "TwitterClient.h"
-#import "Tweet_NOUSE.h"
 #import "AccountManager.h"
 NSString * const kTwitterCumsumerKey = @"yXEm8MC63kGlbq0OCtuxFvEIZ";
 NSString * const kTwitterConsumerSecret = @"oF1AlLdDW4a9zpvYOen4gARoLjfDRELq34hpPwsVP1wbPp5bka";

@@ -9,13 +9,12 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "TwitterClient.h"
-#import "User_NOUSE.h"
-#import "Tweet_NOUSE.h"
 #import "TweetListViewController.h"
 #import "AccountManager.h"
+#import "Const.h"
 
 @interface AppDelegate ()
-
+@property (strong, nonatomic) UINavigationController *navigationController;
 @end
 
 @implementation AppDelegate
@@ -26,20 +25,17 @@
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    UINavigationController *navigationController;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(userDidLogout) name:UserDidLogoutNotification object:nil];
     User *user = [AccountManager currentUser];
     if (user != nil) {
         NSLog(@"welcome , %@", user.name);
-        navigationController = [[UINavigationController alloc] initWithRootViewController:[[TweetListViewController alloc] init]];
+        self.navigationController = [[UINavigationController alloc] initWithRootViewController:[[TweetListViewController alloc] init]];
     } else {
         NSLog(@"NOT login");
-        navigationController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
+        self.navigationController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
+        
     }
-    NSLog(@"NOT login");
-    navigationController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
-
-    self.window.rootViewController = navigationController;
+    self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -76,7 +72,8 @@
 
 - (void)userDidLogout
 {
-     self.window.rootViewController = [[LoginViewController alloc] init];
+    //   self.window.rootViewController = self.navigationController;
     
+    [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
 }
 @end

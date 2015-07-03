@@ -11,5 +11,7 @@
 #import "AFHTTPRequestOperation.h"
 typedef void(^ApiSuccessBlock)(AFHTTPRequestOperation *operation, id response);
 typedef void(^ApiFailureBlock)(AFHTTPRequestOperation *operation, NSError *err);
+extern NSString * UserDidLoginNotification;
+extern NSString * UserDidLogoutNotification;
 
 //#endif
