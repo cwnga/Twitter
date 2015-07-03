@@ -5,7 +5,7 @@ This is a basic twitter app to read and compose tweets the [Twitter API](https:/
 Time spent: `<Number of hours spent>`
 
 ### Features
-![demo](./demo/recording3.gif)
+![demo](./demo/recording.gif)
 #### Required
 
 - [X] User can sign in using OAuth login flow
