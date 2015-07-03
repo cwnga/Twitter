@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface TweetNewPostViewController : UIViewController
+#import "BaseViewController.h"
+@interface TweetNewPostViewController : BaseViewController
 
 @end

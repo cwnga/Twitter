@@ -37,7 +37,7 @@
         navigationController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
     }
     NSLog(@"NOT login");
-    //navigationController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
+    navigationController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
 
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];

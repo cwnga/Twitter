@@ -24,6 +24,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (void)setupView
+{
+    [super setupView];
+}
 - (IBAction)tapSendButton:(id)sender
 {
     NSString *status = self.statusText.text;
