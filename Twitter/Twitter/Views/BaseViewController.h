@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "NibSizeCalculator.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "UIView+Toast.h"
 @interface BaseViewController : UIViewController
 - (void)setupView;
 @end

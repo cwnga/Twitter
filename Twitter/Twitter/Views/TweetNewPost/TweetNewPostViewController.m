@@ -9,6 +9,7 @@
 #import "TweetNewPostViewController.h"
 #import "TwitterClient.h"
 #import "AccountManager.h"
+
 @interface TweetNewPostViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *statusTextView;
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
@@ -48,9 +49,19 @@
     
     [[TwitterClient sharedInstance] insertNewPost:status completion:^(AFHTTPRequestOperation *operation, id response) {
         NSLog(@"post success:%@", response);
+        self.statusTextView.text = @"";
+        [self.view makeToast:@"Succeess"
+                    duration:3.0
+                    position:CSToastPositionTop
+                       title:@""];
+       
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *err) {
         NSLog(@"post fail:%@", err);
+        [self.view makeToast:@"Fail"
+                    duration:3.0
+                    position:CSToastPositionTop
+                       title:@""];
         
     }];
 

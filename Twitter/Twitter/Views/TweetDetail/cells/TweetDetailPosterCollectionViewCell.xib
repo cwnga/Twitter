@@ -17,6 +17,7 @@
                         <state key="normal" image="reply">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <state key="selected" image="reply_on"/>
                         <connections>
                             <action selector="tapRely:" destination="gTV-IL-0wX" eventType="touchUpInside" id="I2U-mL-aN4"/>
                         </connections>
@@ -26,6 +27,7 @@
                         <state key="normal" image="retweet">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <state key="selected" image="retweet_on"/>
                         <connections>
                             <action selector="tapRetweet:" destination="gTV-IL-0wX" eventType="touchUpInside" id="H9a-1S-2Hu"/>
                         </connections>
@@ -35,6 +37,7 @@
                         <state key="normal" image="favorite">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <state key="selected" image="favorite_on"/>
                         <connections>
                             <action selector="tapFavorite:" destination="gTV-IL-0wX" eventType="touchUpInside" id="ZTy-F8-QHB"/>
                         </connections>
@@ -90,6 +93,9 @@
             </constraints>
             <size key="customSize" width="395" height="278"/>
             <connections>
+                <outlet property="favouriteButton" destination="Ue7-nL-URX" id="ErR-0R-luy"/>
+                <outlet property="replyButton" destination="ydb-MQ-uFD" id="Bii-FI-Iri"/>
+                <outlet property="retweetButton" destination="KCj-Zb-Rdk" id="gKZ-lX-7G4"/>
                 <outlet property="tweetLabel" destination="jt0-ZZ-QOZ" id="Je6-Tj-TwX"/>
                 <outlet property="userImageView" destination="Vxi-7u-tWp" id="6AL-TI-bcL"/>
                 <outlet property="userNameLabel" destination="eWZ-s9-vcF" id="f2a-wJ-jRs"/>
@@ -99,7 +105,10 @@
     </objects>
     <resources>
         <image name="favorite" width="16" height="16"/>
+        <image name="favorite_on" width="16" height="16"/>
         <image name="reply" width="16" height="16"/>
+        <image name="reply_on" width="35" height="34"/>
         <image name="retweet" width="19" height="16"/>
+        <image name="retweet_on" width="19" height="16"/>
     </resources>
 </document>

@@ -21,7 +21,7 @@
 - (IBAction)tapRetweet:(id)sender {
     
     if (self.delegate) {
-        [self.delegate tapReplyDelegate:self tweet:nil];
+        [self.delegate tapRetweetDelegate:self tweet:nil];
     }
 }
 - (IBAction)tapFavorite:(id)sender {

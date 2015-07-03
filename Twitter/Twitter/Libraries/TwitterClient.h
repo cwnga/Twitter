@@ -26,7 +26,7 @@
 //reply
 - (void) replyPost:(NSString *)status inReplyTweetId:(NSString *)tweetId completion:(ApiSuccessBlock)completion failure:(ApiFailureBlock)failure;
 
-//reply
+//retweet
 - (void) retweetsWithTweetId:(NSString *)tweetId completion:(ApiSuccessBlock)completion failure:(ApiFailureBlock)failure;
 //add favourite
 - (void) addFavourite:(NSString *)tweetId completion:(ApiSuccessBlock)completion failure:(ApiFailureBlock)failure;

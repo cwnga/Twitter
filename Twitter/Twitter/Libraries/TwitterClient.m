@@ -135,5 +135,14 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
     
 }
 
+- (void) retweetsWithTweetId:(NSString *)tweetId completion:(ApiSuccessBlock)completion failure:(ApiFailureBlock)failure
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+ //   parameters[@"id"] = tweetId;
+//    [NSString stringWithFormat:(NSString *), ...]
+    NSString *url = [NSString stringWithFormat:@"/1.1/statuses/retweet/%@.json", tweetId];
+    [self POST:url parameters:nil success:completion failure:failure];
+}
 
 @end
