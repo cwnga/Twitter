@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Toast.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-UIScrollView-InfiniteScroll.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,32 +42,37 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0F7C4309BF44F142401B8D05</key>
+		<key>069A14E51EBB61B9D3F22928</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>20EF5A59AB188CAA43BEDEC3</key>
+		<key>0F9A633EC8464E74B87AE9BE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AA71CD2F18F94AF03451E894</key>
+		<key>192FA47F62344C308FC47A6A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B5B75D034311577A12DE83EB</key>
+		<key>8253B571698D494DB2E47BE7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C5595D140E7BB273532D64D0</key>
+		<key>88B2FDBD75EF39FCBF969F5B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F5215FBFC69154F621DA6A7D</key>
+		<key>AF6BD537BC10326194021B5E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DB1795D95E5A43F9169670F7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

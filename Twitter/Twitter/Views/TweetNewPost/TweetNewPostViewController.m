@@ -8,8 +8,11 @@
 
 #import "TweetNewPostViewController.h"
 #import "TwitterClient.h"
+#import "AccountManager.h"
 @interface TweetNewPostViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *statusText;
+@property (weak, nonatomic) IBOutlet UITextView *statusTextView;
+@property (weak, nonatomic) IBOutlet UIImageView *userImageView;
+@property (strong, nonatomic) User *user;
 
 @end
 
@@ -27,10 +30,22 @@
 - (void)setupView
 {
     [super setupView];
+    
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStylePlain target:self action:@selector(tapSendButton)];
+    
+    self.user = (User *)[AccountManager currentUser];
+    NSURL *imageURL = [[NSURL alloc] initWithString:self.user.profileImageUrl];
+    [self.userImageView sd_setImageWithURL:imageURL placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (!error) {
+            self.userImageView.image = image;
+        }
+    }];
+    
 }
-- (IBAction)tapSendButton:(id)sender
+- (void)tapSendButton
 {
-    NSString *status = self.statusText.text;
+     NSString *status = self.statusTextView.text;
+    
     [[TwitterClient sharedInstance] insertNewPost:status completion:^(AFHTTPRequestOperation *operation, id response) {
         NSLog(@"post success:%@", response);
         
